@@ -1,0 +1,193 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>	Sinorfi HrDocument Analyser</title>
+		<link
+		rel="apple-touch-icon"
+		sizes="180x180"
+		href="{% static 'vendors/images/logo.jpg'%}"
+	/>
+	<link
+		rel="icon"
+		type="image/png"
+		sizes="32x32"
+		href="{% static 'vendors/images/logo.jpg'%}"
+	/>
+	<link
+		rel="icon"
+		type="image/png"
+		sizes="16x16"
+		href="{% static 'vendors/images/logo.jpg'%}"
+	/>
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/core.css'%}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/icon-font.min.css'%}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'src/plugins/jquery-steps/jquery.steps.css'%}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/style.css'%}" />
+	
+	</head>
+	<body>
+		
+		<div class="header">
+			<div class="header-left">
+				<div class="menu-icon bi bi-list"></div>
+				<div
+					class="search-toggle-icon bi bi-search"
+					data-toggle="header_search"
+				></div>
+				<div class="header-search">
+					
+				</div>
+			</div>
+			<div class="header-right">
+				
+				
+				<div class="user-info-dropdown">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<span class="user-icon">
+								<img src="{% static 'vendors/images/photo1.jpg'%}" alt="" />
+							</span>
+							<span class="user-name">{{user.username}}</span>
+						</a>
+						<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+						>
+						
+							<a class="dropdown-item" href="{% url 'logout' %}"
+								><i class="dw dw-logout"></i> Log Out</a
+							>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		
+		</div>
+
+		<div class="left-side-bar">
+			<br>
+			<br>
+			<div class="menu-block customscroll">
+				<div class="sidebar-menu">
+					<ul id="accordion-menu">
+						<li class="dropdown">
+							<a href="{% url 'home' %}" class="dropdown-toggle">
+								<span class="micon bi bi-house"></span
+								><span class="mtext">Home</span>
+							</a>
+							
+						</li>
+				
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="main-container">
+			<div class="pd-ltr-20 xs-pd-20-10">
+				<div class="min-height-200px">
+					<div class="page-header">
+						<div class="row">
+							<div class="col-md-6 col-sm-12">
+								<div class="title">
+									<h4>Home</h4>
+								</div>
+								<nav aria-label="breadcrumb" role="navigation">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item active">
+											<a href="index.html">Home</a>
+										</li>
+							
+									</ol>
+								</nav>
+							</div>
+							<div class="col-md-6 col-sm-12 text-right">
+								<div class="dropdown">
+									
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+						<div
+			class="error-page d-flex align-items-center flex-wrap justify-content-center pd-20"
+		>
+			<div class="pd-10">
+				<div class="error-page-wrap text-center">
+					<h2>Welcome</h2>
+					<h3>Hello: {{user.username}}</h3>
+					
+					<div class="pt-20 mx-auto max-width-200">
+						<a href="index.html" class="btn btn-primary btn-block btn-lg"
+							>Back To Home</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="card-body">
+				<div class="d-flex justify-content-end">
+					<button type="button" class="btn btn-primary mb-3" onclick="location.href='{% url 'new_chat' %}'">New Chat +</button>
+				</div>
+				<div class="chat-history mb-3">
+					{% for message in messages %}
+						<div class="card mb-2 {% if message.role == 'assistant' %}bg-primary text-white{% endif %}">
+							<div class="card-body p-2">
+								<strong>{{ message.role|title }}:</strong> {{ message.content|linebreaksbr }}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			
+				<form action="." method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input class="form-control mb-2"  type="text" autofocus="autofocus" name="prompt" value="{{ prompt }}" id="">
+					<!-- Ajoutez un champ d'envoi de fichiers ici -->
+					<input type="file" name="file" id="file">
+					<button class="btn btn-success fw-bold" type="submit">
+						GENERATE
+					</button>
+				</form>
+			</div>
+			
+		</div>
+		<script src="{% static 'vendors/scripts/core.js'%}"></script>
+		<script src="{% static 'vendors/scripts/script.min.js'%}"></script>
+		<script src="{% static 'vendors/scripts/process.js'%}"></script>
+		<script src="{% static 'vendors/scripts/layout-settings.js'%}"></script>
+		<script src="{% static 'src/plugins/jquery-steps/jquery.steps.js'%}"></script>
+		<script src="{% static 'vendors/scripts/steps-setting.js'%}"></script>
+	
+	</body>
+</html>

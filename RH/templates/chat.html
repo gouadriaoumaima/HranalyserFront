@@ -1,0 +1,220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>Chat</title>
+
+		<!-- Site favicon -->
+		
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- CSS -->
+		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/core.css'%}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/icon-font.min.css'%}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'src/plugins/jquery-steps/jquery.steps.css'%}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/style.css'%}" />
+
+		
+	</head>
+	<body>
+		
+		<div class="header">
+			<div class="header-left">
+				<div class="menu-icon bi bi-list"></div>
+				<div
+					class="search-toggle-icon bi bi-search"
+					data-toggle="header_search"
+				></div>
+				<div class="header-search">
+					
+				</div>
+			</div>
+			<div class="header-right">
+				
+				
+				<div class="user-info-dropdown">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<span class="user-icon">
+								<img src="{% static 'vendors/images/photo1.jpg'%}" alt="" />
+							</span>
+							<span class="user-name">{{user.username}}</span>
+						</a>
+						<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+						>
+						
+							<a class="dropdown-item" href="{% url 'logout' %}"
+								><i class="dw dw-logout"></i> Log Out</a
+							>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		
+		</div>
+
+		<div class="left-side-bar">
+			<br>
+			<br>
+			<div class="menu-block customscroll">
+				<div class="sidebar-menu">
+					<ul id="accordion-menu">
+						<li class="dropdown">
+							<a href="{% url 'home' %}" class="dropdown-toggle">
+								<span class="micon bi bi-house"></span
+								><span class="mtext">Home</span>
+							</a>
+							
+						</li>
+						<li class="">
+							<a href="{% url 'chat' %}" class="dropdown-toggle">
+								<span class="micon bi bi-textarea-resize"></span
+								><span class="mtext">Chat</span>
+							</a>
+							
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="main-container">
+			<div class="pd-ltr-20 xs-pd-20-10">
+				<div class="min-height-200px">
+					<div class="page-header">
+						<div class="row">
+							<div class="col-md-6 col-sm-12">
+								<div class="title">
+									<h4>Chat</h4>
+								</div>
+								<nav aria-label="breadcrumb" role="navigation">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item">
+											<a href="{% url 'home' %}">Home</a>
+										</li>
+										<li class="breadcrumb-item active" aria-current="page">
+											Chat
+										</li>
+									</ol>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<div class="bg-white border-radius-4 box-shadow mb-30">
+						<div class="row no-gutters">
+							<div class="col-lg-3 col-md-4 col-sm-12">
+								<div class="chat-list bg-light-gray">
+									<div class="chat-search">
+										<span class="ti-search"></span>
+										<input type="text" placeholder="Search Contact" />
+									</div>
+									<div
+										class="notification-list chat-notification-list customscroll"
+									>
+										
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-8 col-sm-12">
+								<div class="chat-detail">
+									<div class="chat-profile-header clearfix">
+										<div class="left">
+											<div class="clearfix">
+												<div class="chat-profile-photo">
+													<img src="{% static 'vendors/images/profile-photo.jpg'%}" alt="" />
+												</div>
+												<div class="chat-profile-name">
+													<h3>Rachel Curtis</h3>
+													<span>New York, USA</span>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									<div class="chat-box">
+										<div class="chat-desc customscroll">
+											<ul>
+												<li class="clearfix admin_chat">
+													<span class="chat-img">
+														<img src="{% static 'vendors/images/chat-img2.jpg'%}" alt="" />
+													</span>
+													<div class="chat-body clearfix">
+														<p>Maybe you already have additional info?</p>
+														<div class="chat_time">09:40PM</div>
+													</div>
+												</li>
+
+												<li class="clearfix">
+													<span class="chat-img">
+														<img src="{% static 'vendors/images/chat-img1.jpg'%}" alt="" />
+													</span>
+													<div class="chat-body clearfix">
+														<p>
+															We are just writing up the user stories now so
+															will have requirements for you next week. We are
+															just writing up the user stories now so will have
+															requirements for you next week.
+														</p>
+														<div class="chat_time">09:40PM</div>
+													</div>
+												</li>
+										
+											</ul>
+										</div>
+										<div class="chat-footer">
+											<div class="file-upload">
+												<a href="#"><i class="fa fa-paperclip"></i></a>
+											</div>
+											<div class="chat_text_area">
+												<textarea placeholder="Type your message…"></textarea>
+											</div>
+											<div class="chat_send">
+												<button class="btn btn-link" type="submit">
+													<i class="icon-copy ion-paper-airplane"></i>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		
+		</div>
+	
+		<script src="{% static 'vendors/scripts/core.js'%}"></script>
+		<script src="{% static 'vendors/scripts/script.min.js'%}"></script>
+		<script src="{% static 'vendors/scripts/process.js'%}"></script>
+		<script src="{% static 'vendors/scripts/layout-settings.js'%}"></script>
+		<script src="{% static 'src/plugins/jquery-steps/jquery.steps.js'%}"></script>
+		<script src="{% static 'vendors/scripts/steps-setting.js'%}"></script>
+	</body>
+</html>
