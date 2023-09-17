@@ -12,7 +12,7 @@ import openai
 # import the generated API key from the secret_key file
 
 # loading the API key from the secret_key file
-openai.api_key = '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'
+openai.api_key = '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'
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -58,6 +58,7 @@ def extract_text_from_pdf(file):
 
     return text
 
+from django.core.files.storage import FileSystemStorage    
 @login_required
 def home(request):
     try:
@@ -83,11 +84,14 @@ def home(request):
               else:
                 
             
-                # Lisez le contenu du fichier (exemple avec un fichier texte)
                   file_content = file.read().decode('utf-8')
                 # Ajoutez le contenu du fichier au prompt
                   prompt += "\n" + file_content
             # append the prompt to the messages list
+            if file:
+
+              fs = FileSystemStorage(location='C:/Users/malek/Desktop/1ere_sem/accident_web/RH/folder')
+              filename = fs.save(file.name, file)
             request.session['messages'].append({"role": "user", "content": prompt})
             # set the session as modified
             request.session.modified = True

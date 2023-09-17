@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-ado_*&dgq)1p2r-5s(miim7z_-p((wkglbwtw7z$hu!_q7g$7=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  []
+ALLOWED_HOSTS = []
 # settings.py
 LOGIN_URL = 'login'  # Replace '/login/' with the URL path for your login view.
 
