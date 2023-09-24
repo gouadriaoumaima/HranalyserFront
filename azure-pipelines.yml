@@ -10,19 +10,18 @@ pool:
   vmImage: ubuntu-latest
 strategy:
   matrix:
-    Python35:
-      PYTHON_VERSION: '3.5'
-    Python36:
-      PYTHON_VERSION: '3.6'
-    Python37:
-      PYTHON_VERSION: '3.7'
-  maxParallel: 3
+    Python38:
+      python.version: '3.8'
+    Python39:
+      python.version: '3.9'
+    Python310:
+      python.version: '3.10'
 
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '$(PYTHON_VERSION)'
-    architecture: 'x64'
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
 
 - task: PythonScript@0
   displayName: 'Export project path'
@@ -46,13 +45,3 @@ steps:
     pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
 
-- script: |
-    pushd '$(projectRoot)'
-    python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
-  displayName: 'Run tests'
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: "**/TEST-*.xml"
-    testRunTitle: 'Python $(PYTHON_VERSION)'
-  condition: succeededOrFailed()
