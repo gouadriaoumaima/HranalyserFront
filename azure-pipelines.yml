@@ -44,3 +44,10 @@ steps:
     pip install -r requirements.txt
     pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+    MaxArtifactSize: 100
