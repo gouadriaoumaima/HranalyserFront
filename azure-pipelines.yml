@@ -44,3 +44,8 @@ steps:
     pip install -r requirements.txt
     pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
+
+- script: |
+    python -m pip install flake8
+    flake8 .
+  displayName: 'Run lint tests'
